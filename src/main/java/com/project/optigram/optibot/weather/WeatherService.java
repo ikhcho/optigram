@@ -17,28 +17,19 @@ public class WeatherService {
 	WeekWeatherVO wwv = new WeekWeatherVO(new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(),
 			new ArrayList<String>(), new ArrayList<String>());
 
-	public WeatherService(String keyword){
+	public WeatherService(String query){
 		super();
-		setQuery(keyword);
+		this.query = query;
 		setDom();
-	}
-
-	private void setQuery(String keyword) {
-		String[] param;
-		query = "";
-		param = keyword.split(" ");
-		for (String p : param) {
-			query += p;
-		}
 	}
 
 	private void setDom(){
 		try{
 			dom = Jsoup.connect("https://search.naver.com/search.naver?query=" + query).get();
 	
-			// °Ë»ö¾î Ã¼Å©
-			String[] oneDay = { "¿ù¿äÀÏ", "È­¿äÀÏ", "¼ö¿äÀÏ", "¸ñ¿äÀÏ", "±İ¿äÀÏ", "Åä¿äÀÏ", "ÀÏ¿äÀÏ", "³»ÀÏ" };
-			String[] week = { "¸ğ·¹", "±ÛÇÇ", "±İÁÖ", "ÀÌ¹øÁÖ", "´ÙÀ½ÁÖ", "ÁÖ¸»", "ÁÖ°£" };
+			// ê²€ìƒ‰ì–´ ì²´í¬
+			String[] oneDay = { "ì›”ìš”ì¼", "í™”ìš”ì¼", "ìˆ˜ìš”ì¼", "ëª©ìš”ì¼", "ê¸ˆìš”ì¼", "í† ìš”ì¼", "ì¼ìš”ì¼", "ë‚´ì¼" };
+			String[] week = { "ëª¨ë ˆ", "ê¸€í”¼", "ê¸ˆì£¼", "ì´ë²ˆì£¼", "ë‹¤ìŒì£¼", "ì£¼ë§", "ì£¼ê°„" };
 			
 			if (dom.select("div[class=w_now2]").hasText()) { 
 				type = 1;
@@ -69,18 +60,18 @@ public class WeatherService {
 		Elements els;
 		int mod = 0;
 		switch(type){
-		case 1: // 1. Æ¯Á¤ À§Ä¡ ÇöÀç ³¯¾¾
+		case 1: // 1. íŠ¹ì • ìœ„ì¹˜ í˜„ì¬ ë‚ ì”¨
 			els = dom.select("div[class=w_now2]");
 			for (Element e : els) {
 				System.out.println(e.select("em").first().text());
-				wvo.setTemperature(e.select("em").first().text().split("¡É")[0]);
-				wvo.setWeather(e.select("em").first().text().split("¡É")[1]);
+				wvo.setTemperature(e.select("em").first().text().split("â„ƒ")[0]);
+				wvo.setWeather(e.select("em").first().text().split("â„ƒ")[1]);
 				wvo.setRainfall(e.select("strong[class=per_num]").first().text());
 				wvo.setOzone(e.select("dd").select("strong").first().text());
 				wvo.setDust(e.select("dt").select("strong").first().text());
 			}
 			break;
-		case 2: // 2. Æ¯Á¤ À§Ä¡ ¹Ì·¡ ³¯¾¾
+		case 2: // 2. íŠ¹ì • ìœ„ì¹˜ ë¯¸ë˜ ë‚ ì”¨
 			els = dom.select("div[class=contents03_sub]");
 			Elements dayEls = els.select("td");
 			for (Element e : dayEls) {
@@ -94,7 +85,7 @@ public class WeatherService {
 				}
 			}
 			break;
-		case 3: // 3. Æ¯Á¤ À§Ä¡ ÁÖ°£ ³¯¾¾
+		case 3: // 3. íŠ¹ì • ìœ„ì¹˜ ì£¼ê°„ ë‚ ì”¨
 			els = dom.select("div[class=contents03_sub]").select("td");
 			for (Element e : els) {
 				wwv.setLocation(e.select("dt[class=dat_time]").text());
@@ -105,7 +96,7 @@ public class WeatherService {
 				wwv.setRainfall(e.select("p[class=rain]").select("em").text());
 			}
 			break;
-		case 4: // 4. À§Ä¡ ¾ø´Â ÇöÀç ³¯¾¾
+		case 4: // 4. ìœ„ì¹˜ ì—†ëŠ” í˜„ì¬ ë‚ ì”¨
 			els = dom.select("div[class=map _map_normal]").select("a");
 			for (Element e : els) {
 				if (mod % 2 == 0) {
@@ -116,9 +107,9 @@ public class WeatherService {
 				}
 				mod++;
 			}
-			resultStr += "<br/><h1>Æ¯Á¤ Áö¿ªÀ» ÀÔ·ÂÇÏ¸é ´õ Á¤È®ÇÑ Á¤º¸¸¦ º¼ ¼ö ÀÖ½À´Ï´Ù.</h1>";
+			resultStr += "<br/><h1>íŠ¹ì • ì§€ì—­ì„ ì…ë ¥í•˜ë©´ ë” ì •í™•í•œ ì •ë³´ë¥¼ ë³¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</h1>";
 			break;
-		case 5: // 5. À§Ä¡ ¾ø´Â ÁÖ°£ ³¯¾¾
+		case 5: // 5. ìœ„ì¹˜ ì—†ëŠ” ì£¼ê°„ ë‚ ì”¨
 			els = dom.select("div[class=map]").select("a");
 			for (Element e : els) {
 				if (mod % 2 == 0) {
@@ -129,12 +120,12 @@ public class WeatherService {
 				}
 				mod++;
 			}
-			resultStr += "<br/><h1>Æ¯Á¤ Áö¿ªÀ» ÀÔ·ÂÇÏ¸é ´õ Á¤È®ÇÑ Á¤º¸¸¦ º¼ ¼ö ÀÖ½À´Ï´Ù.</h1>";
+			resultStr += "<br/><h1>íŠ¹ì • ì§€ì—­ì„ ì…ë ¥í•˜ë©´ ë” ì •í™•í•œ ì •ë³´ë¥¼ ë³¼ ìˆ˜ ìˆìŠµë‹ˆë‹¤.</h1>";
 			break;
 		}
 		if (type != 1 && wwv.getLocation().size() == 0) {
 			type = 6; // null
-			resultStr += "<h1>ÀÔ·Â Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.</h1>";
+			resultStr += "<h1>ì…ë ¥ ì •ë³´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</h1>";
 		}
 		return resultStr;
 	}

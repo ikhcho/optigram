@@ -14,7 +14,7 @@ td :first{
 </style>
 </head>
 <body>
-<h1>검색어 : ${param.input}</h1>
+<h1>검색어 : ${param.query}</h1>
 <table>
 <c:choose>
 	<c:when  test="${ type == 2}">

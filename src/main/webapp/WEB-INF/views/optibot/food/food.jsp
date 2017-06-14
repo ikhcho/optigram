@@ -15,15 +15,9 @@ td :first{
 </head>
 <body>
 <h1>검색어 : ${param.query}</h1>
-<c:if test="${type == 1 }">
-<table>
-<tr><td>기온</td><td>${wvo.getTemperature()}℃</td></tr>
-<tr><td>날씨</td><td>${wvo.getWeather()}</td></tr>
-<tr><td>강수확률</td><td>${wvo.getRainfall()}%</td></tr>
-<tr><td>미세먼지</td><td>${wvo.getDust()}</td></tr>
-<tr><td>오 존</td><td>${wvo.getOzone()}</td></tr>
-</table>
-</c:if>
-${text}
+<c:forEach items="${flist}" var = "food">
+	${food.toString()}
+</c:forEach>
+
 </body>
 </html>

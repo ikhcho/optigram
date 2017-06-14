@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="resources/imgs/optibot/1-wrYQF1qZ3GePyrVn-Sp0UQ.png">
-<form action="weather" method="post" >
-	<input type="text" name="input" size=32>
+<img src="/optigram/resources/optibot/imgs/1-wrYQF1qZ3GePyrVn-Sp0UQ.png">
+<form action="optibot" method="post" >
+	<input type="text" name="query" size=32>
 </form>
 </body>
 </html>

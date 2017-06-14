@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Mine Sweeper</title>
-<script type="text/javascript" src="/optigram/resources/js/ams/version2/MineMap.js"></script>
-<script type="text/javascript" src="/optigram/resources/js/ams/version2/Event.js"></script>
-<script type="text/javascript" src="/optigram/resources/js/ams/version2/DefaultFieldShape.js"></script>
+<script type="text/javascript" src="/optigram/resources/game/js/ams/version2/MineMap.js"></script>
+<script type="text/javascript" src="/optigram/resources/game/js/ams/version2/Event.js"></script>
+<script type="text/javascript" src="/optigram/resources/game/js/ams/version2/DefaultFieldShape.js"></script>
 
 <style>
 button {

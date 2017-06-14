@@ -1,12 +1,21 @@
 package com.project.optigram;
 
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.optigram.optibot.food.FoodService;
+import com.project.optigram.optibot.food.FoodVO;
+import com.project.optigram.optibot.video.VideoService;
 import com.project.optigram.optibot.weather.WeatherService;
 
 /**
@@ -16,15 +25,67 @@ import com.project.optigram.optibot.weather.WeatherService;
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "home";
+	@RequestMapping(value = "/optibot", method = RequestMethod.GET)
+	public String getBot() {
+		return "optibot/bot";
 	}
 	
-	@RequestMapping(value = "/weather", method = RequestMethod.POST, produces = "application/json; charset=utf-8" )
-	public ModelAndView weather(String input){
+	@RequestMapping(value = "/optibot", method = RequestMethod.POST)
+	public String postBot(String query) {
+		String tag;
+		tag = query.split(" ")[0];
+		query = query.substring(query.indexOf(" ")+1).replace(" ", "+");
+		
+		if(tag.equals("/v") || tag.equals("/ㅍ") || tag.equals("/영상")){
+			return "redirect:/optibot/video?query="+query;
+		}else if(tag.equals("/f") || tag.equals("/ㄹ") || tag.equals("/음식")){
+			return "redirect:/optibot/food?query="+query;
+		}else if(tag.equals("/w") || tag.equals("/ㅈ") || tag.equals("/날씨")){
+			query = query.contains("날씨")? query:query+"+날씨";
+			return "redirect:/optibot/weather?query="+query;
+		}
+		return "optibot/bot";
+	}
+	
+	@RequestMapping(value = "/optibot/v", method = RequestMethod.GET)
+	public String videoBot(){
+		return "optibot/video/optibot";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/video/search" )
+	public String getVideoKey(@RequestParam("query") String query){
+		VideoService vs = new VideoService();
+		String key = vs.getKey(query);
+		return key;
+	}
+	
+	/*
+	@RequestMapping(value = "/optibot/video", method = RequestMethod.GET)
+	public ModelAndView video(@RequestParam("query") String query){
 		ModelAndView mv = new ModelAndView();
-		WeatherService ws = new WeatherService(input);
+		VideoService vs = new VideoService();
+		String key = vs.getKey(query);
+
+		mv.setViewName("optibot/video/optibot");
+		mv.addObject("query", query);
+		return mv;
+	}
+*/	
+	@RequestMapping(value = "/optibot/food", method = RequestMethod.GET)
+	public ModelAndView food(@RequestParam("query") String query){
+		ModelAndView mv = new ModelAndView();
+		FoodService fs = new FoodService();
+		ArrayList<FoodVO> list = fs.DinningCodeParse(query);
+		mv.setViewName("optibot/food/food");
+		mv.addObject("flist", list);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/optibot/weather", method = RequestMethod.GET)
+	public ModelAndView weather(@RequestParam("query") String query){
+		ModelAndView mv = new ModelAndView();
+		WeatherService ws = new WeatherService(query);
 		String error = ws.Paser();
 		switch(ws.getType()){
 			case 1:
@@ -46,6 +107,8 @@ public class HomeController {
 		mv.addObject("type", ws.getType());
 		return mv;
 	}
+	
+	
 	
 	@RequestMapping(value = "/game/ams", method = RequestMethod.GET)
 	public String ams() {
