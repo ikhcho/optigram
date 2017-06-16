@@ -48,7 +48,7 @@
 </head>
 <body>
 <%if(request.getParameter("id") == null){ %>
-	<form action="game/ams/version2/SaveData.jsp" method="post">
+	<form action="/optigram/game/ams/version2/SaveData" method="get">
 		이름을 입력해주세요.<input type="text" name = "id">
 		<input type="submit" value="등록">
 		<input type="hidden" name="map" value="<%=request.getParameter("map") %>">
