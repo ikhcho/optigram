@@ -152,7 +152,7 @@ function flagField(id){
 	var tabId = 'btn'+id;
 	var row = Number(id.split('/')[0]);
 	var col = Number(id.split('/')[1]);
-	data += '<img src="/optigram/resources/gmae/imgs/ams/flag.png" onmousedown="holdCheck(id)" onmouseup="mouseCheck(id)" class ="flag" id =';
+	data += '<img src="/optigram/resources/game/imgs/ams/flag.png" onmousedown="holdCheck(id)" onmouseup="mouseCheck(id)" class ="flag" id =';
 	data += id;
 	data += '>';
 	sweeper--;

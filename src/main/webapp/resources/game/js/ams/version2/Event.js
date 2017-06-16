@@ -180,5 +180,5 @@ function save() {
 	var winY      = window.screenY || window.screenTop || 0; // 현재창의 y좌표
 	w = winX + (winWidth - popWidth) / 2;
 	h = winY + (winHeight - popHeight) / 2;
-	window.open("/game/ams/version2/SaveData?map="+shape+"&select_level="+level+"&clear_time="+playTime, "기록저장", "width="+popWidth + " height="+popHeight +" top="+h+" left="+w);
+	window.open("/optigram/game/ams/version2/SaveData?map="+shape+"&select_level="+level+"&clear_time="+playTime, "기록저장", "width="+popWidth + " height="+popHeight +" top="+h+" left="+w);
 }
