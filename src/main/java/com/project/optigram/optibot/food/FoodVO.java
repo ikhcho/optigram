@@ -50,17 +50,11 @@ public class FoodVO {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Food [title=");
-		builder.append(title);
-		builder.append(", location=");
-		builder.append(location);
-		builder.append(", menu=");
-		builder.append(Arrays.toString(menu));
-		builder.append(", url=");
-		builder.append(url);
-		builder.append(", imgUrl=");
-		builder.append(imgUrl);
-		builder.append("]");
+		builder.append("\"이름\" : \""+title+"\"");
+		builder.append(", \"imgUrl\" : \""+imgUrl+"\"");
+		builder.append(", \"주소\" : \""+location+"\"");
+		builder.append(", \"메뉴\" : \""+Arrays.toString(menu)+"\"");
+		builder.append(", \"url\" : \""+url+"\"");
 		return builder.toString();
 	}
 }

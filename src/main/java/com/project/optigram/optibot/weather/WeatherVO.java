@@ -1,5 +1,7 @@
 package com.project.optigram.optibot.weather;
 
+import java.util.Arrays;
+
 public class WeatherVO {
 	private String temperature;
 	private String weather;
@@ -37,6 +39,14 @@ public class WeatherVO {
 	public void setDust(String dust) {
 		this.dust = dust;
 	}
-	
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("\"온도\" : \""+temperature+"\"");
+		builder.append(", \"날씨\" : \""+weather+"\"");
+		builder.append(", \"강수확률\" : \""+rainfall+"\"");
+		builder.append(", \"오존\" : \""+ozone+"\"");
+		builder.append(", \"미세먼지\" : \""+dust+"\"");
+		return builder.toString();
+	}
 }

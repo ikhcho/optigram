@@ -63,6 +63,7 @@ body {
     max-width: 200px;
     clear: both;
     float: left;
+    font-size : 14px;
 }
 
 #optimalchat .server-res:after {

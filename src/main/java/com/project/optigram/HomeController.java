@@ -25,87 +25,61 @@ import com.project.optigram.optibot.weather.WeatherService;
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home() {
+		return "home";
+	}
+	
 	@RequestMapping(value = "/optibot", method = RequestMethod.GET)
 	public String getBot() {
 		return "optibot/bot";
 	}
-	
-	@RequestMapping(value = "/optibot", method = RequestMethod.POST)
-	public String postBot(String query) {
-		String tag;
-		tag = query.split(" ")[0];
-		query = query.substring(query.indexOf(" ")+1).replace(" ", "+");
-		
-		if(tag.equals("/v") || tag.equals("/ㅍ") || tag.equals("/영상")){
-			return "redirect:/optibot/video?query="+query;
-		}else if(tag.equals("/f") || tag.equals("/ㄹ") || tag.equals("/음식")){
-			return "redirect:/optibot/food?query="+query;
-		}else if(tag.equals("/w") || tag.equals("/ㅈ") || tag.equals("/날씨")){
-			query = query.contains("날씨")? query:query+"+날씨";
-			return "redirect:/optibot/weather?query="+query;
-		}
-		return "optibot/bot";
-	}
-	
-	@RequestMapping(value = "/optibot/v", method = RequestMethod.GET)
-	public String videoBot(){
-		return "optibot/video/optibot";
+	@ResponseBody
+	@RequestMapping(value = "/optibot/video", method = RequestMethod.GET)
+	public String getVideoKey(@RequestParam("query") String query){
+		VideoService vs = new VideoService();
+		String result = vs.getKey(query);
+		return result;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/video/search" )
-	public String getVideoKey(@RequestParam("query") String query){
-		VideoService vs = new VideoService();
-		String key = vs.getKey(query);
-		return key;
-	}
-	
-	/*
-	@RequestMapping(value = "/optibot/video", method = RequestMethod.GET)
-	public ModelAndView video(@RequestParam("query") String query){
-		ModelAndView mv = new ModelAndView();
-		VideoService vs = new VideoService();
-		String key = vs.getKey(query);
-
-		mv.setViewName("optibot/video/optibot");
-		mv.addObject("query", query);
-		return mv;
-	}
-*/	
-	@RequestMapping(value = "/optibot/food", method = RequestMethod.GET)
-	public ModelAndView food(@RequestParam("query") String query){
-		ModelAndView mv = new ModelAndView();
+	@RequestMapping(value = "/optibot/food", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String food(@RequestParam("query") String query){
 		FoodService fs = new FoodService();
 		ArrayList<FoodVO> list = fs.DinningCodeParse(query);
-		mv.setViewName("optibot/food/food");
-		mv.addObject("flist", list);
-		return mv;
+		String result = " {\"food\" : [";
+		for(int i=0; i<list.size(); i++){
+			result+="{";
+			result += list.get(i).toString();
+			result +="}";
+			if(i != list.size()-1) result += ",";
+		}
+		result += "]}";
+		System.out.println(result);
+		return result;
 	}
 	
-	@RequestMapping(value = "/optibot/weather", method = RequestMethod.GET)
-	public ModelAndView weather(@RequestParam("query") String query){
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	@RequestMapping(value = "/optibot/weather", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	public String weather(@RequestParam("query") String query){
 		WeatherService ws = new WeatherService(query);
-		String error = ws.Paser();
-		switch(ws.getType()){
-			case 1:
-				mv.addObject("wvo",ws.getWvo());
-				mv.setViewName("optibot/weather/one");
-				break;
-			case 4: case 5:
-				mv.addObject("text",error);
-			case 2: case 3:
-				mv.addObject("wwv",ws.getWwv());
-				mv.addObject("size",ws.getWwv().getLocation().size());
-				mv.setViewName("optibot/weather/mul");
-				break;
-			case 6:
-				mv.setViewName("optibot/weather/one");
-				mv.addObject("text",error);
-				break;
+		ArrayList list = ws.NaverWeatherPaser();
+		String result = " {\"weather\" : [";
+		if(ws.getType() ==1){
+			result+="{";
+			result += list.get(0).toString();
+			result +="}";
+		}else{
+			for(int i=0; i<list.size(); i++){
+				result+="{";
+				result += list.get(i).toString();
+				result +="}";
+				if(i != list.size()-1) result += ",";
+			}
 		}
-		mv.addObject("type", ws.getType());
-		return mv;
+		result += "]}";
+		System.out.println(result);
+		return result;
 	}
 	
 	
