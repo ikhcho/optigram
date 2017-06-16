@@ -8,7 +8,8 @@ import org.jsoup.select.Elements;
 
 public class FoodService{
 	public ArrayList DinningCodeParse(String query) {
-		
+		System.setProperty("http.proxyHost", "112.216.16.250") ;
+		System.setProperty("http.proxyPort", "3128");
 		ArrayList<FoodVO> foodList = new ArrayList<FoodVO>();
 		try {
 			Document doc = Jsoup.connect("http://www.diningcode.com/isearch.php?query=" + query).get();
