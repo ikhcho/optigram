@@ -52,7 +52,7 @@ td{
 <td>시간</td>
 </tr>
 <div style="float:right">
-<a href="Rank?map=<%=map %>&select_level=<%=select_level %>"><img src="/optigram/resources/game/imgs/ams/refresh.jpg"></a>
+<a href="Rank?map=<%=map %>&select_level=<%=select_level %>"><img src="/optigram/resources/game/ams/imgs/refresh.jpg"></a>
 </div>
 <%
 	if(rs!=null){ 

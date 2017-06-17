@@ -36,7 +36,7 @@ function requestQuery(query) {
 				if(key == 'imgUrl'){
 					text+= '<img src="' + obj.food[i][key] +'"><br/>'; 
 				}else if(key == 'url'){
-					text += '<a href="' + obj.food[i][key] +'">' + obj.food[i][key] + '</a><br/>';
+					text += '<a href="' + obj.food[i][key] +'" target="_blank">' + obj.food[i][key] + '</a><br/>';
 				}else{
 					text+= key + " : " + obj.food[i][key]+"<br/>";
 				}

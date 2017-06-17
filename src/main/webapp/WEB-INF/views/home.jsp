@@ -50,15 +50,36 @@
 	<script src="resources/jquery/bxslider/jquery.bxslider.min.js"></script>
 	<script>
 		$(document).ready(function() {
-	
+			var fontColor = ['red','orange','yellow','green','blue','navy','purple'];
+			var i=0;
 			$('.bxslider').bxSlider({
 				mode : 'fade',
 				captions : true,
-				speed:1000,
+				speed:500,
 				auto:true
 			});
+			setInterval(function(){
+				i++;
+				$('#developer MARQUEE').animate({
+					'opacity' : '0.4'
+				},1000);
+				$('#developer  MARQUEE').animate({
+					'opacity' : '1'
+				},2000).css('color',fontColor[i%7]);
+			},3000);
 		});
 	</script>
+	<style>
+		#developer{
+			font-size : 28px;
+			text-align : center;
+			font-style : italic;
+		}
+		MARQUEE{
+			width : 300px;
+			text-align : center;
+		}
+	</style>
 </head>
 
 <body id="page-top">
@@ -101,15 +122,35 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-            	
-                <h1 id="homeHeading">Your Favorite Source of Free Bootstrap Themes</h1>
+                <h1 id="homeHeading">Optimization Programming</h1>
                 <hr>
-	                <ul class="bxslider">
-						<li><img src="resources/bootstrap/img/portfolio/fullsize/1.jpg" title="스도쿠" /></li>
-						<li><img src="resources/bootstrap/img/portfolio/fullsize/2.jpg" title="붕어빵타이쿤" /></li>
-						<li><img src="resources/bootstrap/img/portfolio/fullsize/3.jpg" title="지뢰찾기" /></li>
-					</ul>
-                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <p>Make With</p>
+                <div id="developer">
+	                <MARQUEE direction=up height=55 behavior=alternate scrollamount=1>Gyucheol Im</MARQUEE>
+	                <MARQUEE direction=down height=55 behavior=alternate scrollamount=1>Gisung Lee</MARQUEE>
+	                <MARQUEE direction=up height=55 behavior=alternate scrollamount=1>Ikhyeon Cho</MARQUEE>
+                </div>
+                <hr>
+                <p>Our Project</p>
+                
+                <div class="row">
+                	<div class="col-lg-6 col-md-6 text-center">
+		                <div class="service-box">
+		                        <i class="fa fa-5x fa-gamepad text-primary sr-icons"></i>
+		                        <h3>GAME</h3>
+		                        <p class="text-muted">스도쿠<br/>
+		                        					   붕어빵타이쿤<br/>
+		                        					   지뢰찾기</p>
+		                </div>
+		            </div>
+		            <div class="col-lg-6 col-md-6 text-center">
+		                <div class="service-box">
+		                        <i class="fa fa-4x fa-wechat text-primary sr-icons"></i>
+		                        <h3>CHATBOT</h3>
+		                        <p class="text-muted">OPTIBOT</p>
+		                </div>
+	                </div>
+                </div>
                 <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
             </div>
         </div>
@@ -140,6 +181,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
+	               
+	                <ul class="bxslider">
+						<li><img src="resources/game/ams/imgs/ams_img01.png" title="스도쿠" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img02.png" title="스도쿠" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img03.png" title="스도쿠" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img04.png" title="스도쿠" /></li>
+					</ul>
+					
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
                         <h3>Sturdy Templates</h3>

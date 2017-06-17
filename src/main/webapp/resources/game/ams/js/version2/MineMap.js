@@ -127,7 +127,7 @@ function drawField(){
 }
 
 function drawRank(){
-	var data='<iframe src="ams/version2/Rank?map='+shape+'&select_level='+level +'" style="width:264px; height:500px"></iframe>';
+	var data='<iframe src="ams/version2/Rank?map='+shape+'&select_level='+level +'" style="width:264px; height:300px"></iframe>';
 	document.getElementById("rank").innerHTML = data;
 }
 function numberField(id){
@@ -152,7 +152,7 @@ function flagField(id){
 	var tabId = 'btn'+id;
 	var row = Number(id.split('/')[0]);
 	var col = Number(id.split('/')[1]);
-	data += '<img src="/optigram/resources/game/imgs/ams/flag.png" onmousedown="holdCheck(id)" onmouseup="mouseCheck(id)" class ="flag" id =';
+	data += '<img src="/optigram/resources/game/ams/imgs/flag.png" onmousedown="holdCheck(id)" onmouseup="mouseCheck(id)" class ="flag" id =';
 	data += id;
 	data += '>';
 	sweeper--;
@@ -190,7 +190,7 @@ function answer(success){
 				ans += '<td><button style="background:#000000"></button>';
 			}else{
 				if(answerField[i][j] == 9){
-					ans += '<td><img src="/optigram/resources/game/imgs/ams/mine2.png"></td>';
+					ans += '<td><img src="/optigram/resources/game/ams/imgs/mine.png"></td>';
 				}else if(document.getElementById(btnId).disabled == true && document.getElementById(btnId).getAttribute("class") !='confirm'){
 					ans += '<td><button type="button"style="background: rgb(225, 225, 225)">&nbsp</button></td>';
 				}else if(document.getElementById(btnId).getAttribute("class") =='confirm'){
