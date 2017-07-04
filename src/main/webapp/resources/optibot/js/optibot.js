@@ -20,24 +20,26 @@ function requestQuery(query) {
 	var url = "/optigram";
 	query = query.substring(query.indexOf(" ")+1);
 	var result;
+	var text='';
 	if (tag == "/v" || tag == "/ㅍ" || tag == "/영상") {
 		url += "/optibot/video";
 		result = requestServer(url, query);
 		var videoUrl = 'https://www.youtube.com/embed/' + result;
-		var text = '<iframe class="resultVideo" src="'+videoUrl+'" style="width:100%; height:auto" frameborder="0" allowfullscreen></iframe>';
+		text = '<iframe class="resultVideo" src="'+videoUrl+'" style="width:100%; height:auto" frameborder="0" allowfullscreen></iframe>';
 		responseServer(text);
 	} else if (tag == "/f" || tag == "/ㄹ" || tag == "/음식") {
 		url += "/optibot/food";
 		result = requestServer(url, query);
 		var obj= JSON.parse(result);
-		var text = "";
 		for(var i=0; i<obj.food.length; i++){
 			for(var key in obj.food[i]){
 				if(key == 'imgUrl'){
 					text+= '<img src="' + obj.food[i][key] +'"><br/>'; 
 				}else if(key == 'url'){
 					text += '<a href="' + obj.food[i][key] +'" target="_blank">' + obj.food[i][key] + '</a><br/>';
-				}else{
+				}else if(key == '이름'){
+					text+= obj.food[i][key]+"<br/>";
+				}else if(obj.food[i][key] != 'null'){
 					text+= key + " : " + obj.food[i][key]+"<br/>";
 				}
 			}
@@ -49,13 +51,17 @@ function requestQuery(query) {
 		query = query.includes("날씨") ? query : query + "+날씨";
 		result = requestServer(url, query);
 		var obj= JSON.parse(result);
-		var text = "";
 		for(var i=0; i<obj.weather.length; i++){
 			for(var key in obj.weather[i]){
-				text+= key + " : " + obj.weather[i][key]+"<br/>";
+				if(obj.weather[i][key] !=null){
+					text+= key + " : " + obj.weather[i][key]+"<br/>";
+				}
 			}
 			text+="<hr>";
 		}
+		responseServer(text);
+	} else if(tag =='/?'){
+		text = '영상검색 : /v or /ㅍ or /영상<br/>음식검색 : /f or /ㄹ or /음식<br/>날씨검색 : /w or /ㅈ or /날씨</li>';
 		responseServer(text);
 	}
 }

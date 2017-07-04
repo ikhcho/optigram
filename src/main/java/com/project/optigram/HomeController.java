@@ -34,6 +34,7 @@ public class HomeController {
 	public String getBot() {
 		return "optibot/bot";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/optibot/video", method = RequestMethod.GET)
 	public String getVideoKey(@RequestParam("query") String query){

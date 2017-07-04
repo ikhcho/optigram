@@ -8,67 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>OPTIGRAM</title>
-
+	<!-- CSS -->
     <!-- Bootstrap Core CSS -->
     <link href="resources/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="resources/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-
     <!-- Plugin CSS -->
     <link href="resources/bootstrap/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
-
     <!-- Theme CSS -->
     <link href="resources/bootstrap/css/creative.min.css" rel="stylesheet">
-
+	<!-- Box slider -->
+	<link href="resources/jquery/bxslider/jquery.bxslider.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<!-- Box slider -->
-	<link href="resources/jquery/bxslider/jquery.bxslider.css" rel="stylesheet">
-	
-	<!-- jQuery -->
-	<script src="resources/jquery/jquery-3.2.1.min.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
-    <script src="resources/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <script src="resources/bootstrap/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="resources/bootstrap/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="resources/bootstrap/js/creative.min.js"></script>
-	
-	<!-- Box slider JavaScript -->
-	<script src="resources/jquery/bxslider/jquery.bxslider.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			var fontColor = ['red','orange','yellow','green','blue','navy','purple'];
-			var i=0;
-			$('.bxslider').bxSlider({
-				mode : 'fade',
-				captions : true,
-				speed:500,
-				auto:true
-			});
-			setInterval(function(){
-				i++;
-				$('#developer MARQUEE').animate({
-					'opacity' : '0.4'
-				},1000);
-				$('#developer  MARQUEE').animate({
-					'opacity' : '1'
-				},2000).css('color',fontColor[i%7]);
-			},3000);
-		});
-	</script>
 	<style>
 		#developer{
 			font-size : 28px;
@@ -98,13 +56,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">about</a>
+                        <a class="page-scroll" href="#homeHeading">about</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#game">game</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="optibot">optibot</a>
+                        <a class="page-scroll" href="#optibot">optibot</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#next">next</a>
@@ -127,7 +85,7 @@
                 <p>Make With</p>
                 <div id="developer">
 	                <MARQUEE direction=up height=55 behavior=alternate scrollamount=1>Gyucheol Im</MARQUEE>
-	                <MARQUEE direction=down height=55 behavior=alternate scrollamount=1>Gisung Lee</MARQUEE>
+	                <MARQUEE direction=down height=55 behavior=alternate scrollamount=1>Kisung Lee</MARQUEE>
 	                <MARQUEE direction=up height=55 behavior=alternate scrollamount=1>Ikhyeon Cho</MARQUEE>
                 </div>
                 <hr>
@@ -136,90 +94,81 @@
                 <div class="row">
                 	<div class="col-lg-6 col-md-6 text-center">
 		                <div class="service-box">
-		                        <i class="fa fa-5x fa-gamepad text-primary sr-icons"></i>
-		                        <h3>GAME</h3>
-		                        <p class="text-muted">스도쿠<br/>
+		                    <i class="fa fa-5x fa-gamepad text-primary sr-icons"></i><br/>
+		                    <a href="#game" class="btn btn-primary btn-xl page-scroll">GAME</a>
+		                    <p class="text-muted">스도쿠<br/>
 		                        					   붕어빵타이쿤<br/>
 		                        					   지뢰찾기</p>
 		                </div>
 		            </div>
 		            <div class="col-lg-6 col-md-6 text-center">
 		                <div class="service-box">
-		                        <i class="fa fa-4x fa-wechat text-primary sr-icons"></i>
-		                        <h3>CHATBOT</h3>
-		                        <p class="text-muted">OPTIBOT</p>
+		                    <i class="fa fa-4x fa-wechat text-primary sr-icons"></i><br/>
+		                 	<a href="#optibot" class="btn btn-primary btn-xl page-scroll">CHATBOT</a>
+		                    <p class="text-muted">OPTIBOT<br/><br/></p>
 		                </div>
 	                </div>
                 </div>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                
             </div>
         </div>
     </header>
- 				
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-					<h2 class="section-heading">We've got what you need!</h2>
-                    <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="services">
+    <section id="game">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">Game Project</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
+        
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-	               
+                <div class="col-lg-4 text-center">
+					<h3>지뢰찾기</h3>	               
 	                <ul class="bxslider">
-						<li><img src="resources/game/ams/imgs/ams_img01.png" title="스도쿠" /></li>
-						<li><img src="resources/game/ams/imgs/ams_img02.png" title="스도쿠" /></li>
-						<li><img src="resources/game/ams/imgs/ams_img03.png" title="스도쿠" /></li>
-						<li><img src="resources/game/ams/imgs/ams_img04.png" title="스도쿠" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img01.png" title="사각형" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img02.png" title="폭탄" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img03.png" title="별" /></li>
+						<li><img src="resources/game/ams/imgs/ams_img04.png" title="피라미드" /></li>
 					</ul>
-					
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                        <h3>우리집 어항</h3>
+                        <img src="http://211.226.233.246:8080/?action=stream" width="100%" height="100%"/>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-4 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                        <h3>지렁이</h3>
+                        <iframe src="http://slither.io/"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+	<section class="bg-primary" id="optibot">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 text-center">
+					<h2 class="section-heading">OPTIBOT!</h2>
+                    <hr class="light">
+                    <p class="text-faded">More powerful chatbot project</p>
+                    <p><a href="optibot" class="page-scroll btn btn-default btn-xl sr-button">More detail</a></p>
+                </div>
+                
+                <div class="col-lg-8 text-center">
+					<iframe class="col-lg-12" src="optibot" style="height:640px" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter popup-gallery">
@@ -345,8 +294,43 @@
             </div>
         </div>
     </section>
-
-  
+    
+    
+	<!-- JS -->
+	<!-- jQuery -->
+	<script src="resources/bootstrap/vendor/jquery/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+    <script src="resources/bootstrap/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="resources/bootstrap/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="resources/bootstrap/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Theme JavaScript -->
+    <script src="resources/bootstrap/js/creative.min.js"></script>
+	<!-- Box slider JavaScript -->
+	<script src="resources/jquery/bxslider/jquery.bxslider.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var fontColor = ['red','orange','yellow','green','blue','navy','purple'];
+			var i=0;
+			$('.bxslider').bxSlider({
+				mode : 'fade',
+				captions : true,
+				speed:500,
+				auto:true
+			});
+			setInterval(function(){
+				i++;
+				$('#developer MARQUEE').animate({
+					'opacity' : '0.4'
+				},1000);
+				$('#developer  MARQUEE').animate({
+					'opacity' : '1'
+				},2000).css('color',fontColor[i%7]);
+			},3000);
+		});
+	</script>
+  	
 </body>
 
 </html>
