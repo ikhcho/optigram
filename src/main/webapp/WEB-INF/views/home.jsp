@@ -141,12 +141,11 @@
                         <img src="http://211.226.233.246:8080/?action=stream" width="100%" height="100%"/>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+           </div>
+           <div class="row">
+                <div class="col-md-12 text-center">
                         <h3>지렁이</h3>
-                        <iframe src="http://slither.io/"></iframe>
-                    </div>
+                        <iframe width="100%" height="600px" src="http://slither.io/"></iframe>
                 </div>
             </div>
         </div>
